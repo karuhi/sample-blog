@@ -18,7 +18,7 @@
         トップ画像キャプション：
         <input v-model="imageCaption" type="text" />
       </label>
-      <TuiEditor
+      <editor
         :initialValue="editorText"
         :options="editorOptions"
         mode="markdown"
@@ -32,7 +32,14 @@
       </label>
       <button @click="postArticle">{{ postProgress }}</button>
 
-      <button v-if="postProgress == 'データの投稿に成功しました'" @click="postArticle">投稿を確認する</button>
+      <nuxt-link
+        v-if="postProgress == 'データの投稿に成功しました'"
+        to="/posts"
+      >
+        <button>
+          投稿を確認する
+        </button>
+      </nuxt-link>
     </main>
   </section>
 </template>
