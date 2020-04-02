@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { API_KEY, WRITE_API_KEY, WRITE_PASSWORD } = process.env;
 export default {
-  mode: "ssr",
+  mode: "spa",
   srcDir: "./client/",
   env: { API_KEY, WRITE_API_KEY, WRITE_PASSWORD },
   head: {
@@ -21,14 +21,22 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   loading: { color: "#3B8070" },
-  css: [
-    "~/assets/css/mvp.css",
-    "tui-editor/dist/tui-editor.css",
-    "tui-editor/dist/tui-editor-contents.css",
-    "codemirror/lib/codemirror.css"
-  ],
+  css: ["~/assets/css/mvp.css"],
   build: {
-    vendor: ["@toast-ui/vue-editor"]
+    babel: {
+      presets({ isServer }: { isServer: any }) {
+        return [
+          [
+            require.resolve("@nuxt/babel-preset-app"),
+            // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+            {
+              buildTarget: isServer ? "server" : "client",
+              corejs: { version: 3 }
+            }
+          ]
+        ];
+      }
+    }
   },
   buildModules: ["@nuxt/typescript-build"],
   modules: ["@nuxtjs/axios"],
@@ -38,18 +46,5 @@ export default {
         ? "https://jam-blog-956b0.web.app/"
         : "http://localhost:3000/"
   },
-  plugins: [
-    {
-      src: "~plugins/tui-editor",
-      mode: "client"
-    }
-  ],
-
-  serverMiddleware: ["~~/api/"],
-  tui: {
-    editor: {
-      language: "ja_JP"
-      //exts: ['colorSyntax', 'scrollSync', 'table', 'uml']
-    }
-  }
+  serverMiddleware: ["~~/api/"]
 };

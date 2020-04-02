@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     compiledMarkdownText: function(mdtext) {
-      return marked(mdtext); // computedにする必要あるかどうかは知らん
+      return marked(mdtext);
     }
   }
 };

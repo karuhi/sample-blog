@@ -4,17 +4,20 @@
   "version": "2.12.1",
   "private": true,
   "dependencies": {
+    "@nuxt/typescript-build": "^0.6.1",
     "@nuxt/typescript-runtime": "^0.4.1",
     "@nuxtjs/axios": "5.9.6",
     "@nuxtjs/dotenv": "^1.4.1",
     "@toast-ui/vue-editor": "^2.0.1",
     "@tui-nuxt/editor": "^1.0.0-beta.3",
+    "@types/node": "^13.9.8",
     "body-parser": "^1.19.0",
     "codemirror": "^5.52.2",
     "core-js": "^3.6.4",
     "express": "^4.17.1",
     "heroku": "^7.39.2",
-    "nuxt": "^2.12.1",
+    "marked": "^0.8.2",
+    "nuxt": "^2.12.2",
     "nuxt-property-decorator": "2.5.1",
     "tui-editor": "^1.4.10",
     "vuex-class": "0.3.2"
@@ -25,9 +28,5 @@
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
     "heroku-postbuild": "npm run build"
-  },
-  "devDependencies": {
-    "@nuxt/typescript-build": "^0.6.1",
-    "marked": "^0.8.2"
   }
 }
