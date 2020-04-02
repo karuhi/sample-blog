@@ -28,7 +28,10 @@
       </label>
       <button @click="postArticle">{{ postProgress }}</button>
 
-      <nuxt-link v-if="postProgress == 'データの投稿に成功しました'" to="/posts">
+      <nuxt-link
+        v-if="postProgress == 'データの投稿に成功しました'"
+        to="/posts"
+      >
         <button>投稿を確認する</button>
       </nuxt-link>
     </main>
@@ -146,11 +149,12 @@ export default {
   },
   data() {
     return {
-      input: "# This is initialValue.",
+      input: "# hello",
       postProgress: "投稿する",
       title: "タイトル",
       imageURL: "https://via.placeholder.com/1920x1080",
       imageCaption: "image by https://via.placeholder.com/",
+      editorText: "# This is initialValue.",
       editorOptions: {
         hideModeSwitch: true
       },
@@ -165,7 +169,7 @@ export default {
           title: this.title,
           image: this.imageURL,
           imageCaption: this.imageCaption,
-          contents: this.input
+          contents: this.editorText
         };
         this.$axios
           .post("api/microcms", data)
