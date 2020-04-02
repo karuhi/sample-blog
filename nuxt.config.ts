@@ -43,7 +43,7 @@ export default {
   axios: {
     baseURL:
       process.env.NODE_ENV === "production"
-        ? "https://jam-blog-956b0.web.app/"
+        ? "https://karuhi-blog.herokuapp.com/"
         : "http://localhost:3000/"
   },
   serverMiddleware: ["~~/api/"]
